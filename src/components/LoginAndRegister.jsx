@@ -212,7 +212,7 @@ export default function AuthPage({ homePath = "/" }) {
   return (
     <div className="min-h-screen w-full bg-orange-50 flex items-start md:items-center justify-center py-10">
       <div className="w-full max-w-6xl mx-auto px-4">
-        {/* Header Tabs */}
+
         <Header />
 
         <div className="mt-10 grid md:grid-cols-2 gap-12 items-start">
@@ -289,7 +289,7 @@ export default function AuthPage({ homePath = "/" }) {
             </>
           ) : (
             <>
-              {/* Register image left */}
+
               <DessertCard position="left" />
 
               <form
@@ -402,7 +402,7 @@ export default function AuthPage({ homePath = "/" }) {
           )}
         </div>
 
-        {/* Inline toast/notice */}
+
         {notice && (
           <div className="mt-8 mx-auto max-w-2xl bg-white border border-orange-200 text-orange-700 rounded-xl px-4 py-3 shadow">
             {notice}
