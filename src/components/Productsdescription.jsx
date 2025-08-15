@@ -27,6 +27,11 @@ const ProductDetails = () => {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   const handleBuyNow = () => {
+    if (!pincode || pincode.trim() === "") {
+    toast.error("Please enter your pincode before proceeding");
+    return;
+  }
+
     if (!loggedInUser) {
       toast.error("Please login before making a purchase");
       setTimeout(() => {
@@ -183,9 +188,9 @@ const ProductDetails = () => {
                 <button
                   key={w}
                   onClick={() => setSelectedWeight(w)}
-                  className={`px-3 py-1 border rounded-md text-sm ${selectedWeight === w
-                      ? "bg-[#f4d03c] border-[#f4d03c]"
-                      : "bg-white border-gray-300"
+                  className={`px-3 py-1 border rounded-md cursor-pointer text-sm ${selectedWeight === w
+                    ? "bg-[#f4d03c] border-[#f4d03c]"
+                    : "bg-white border-gray-300"
                     }`}
                 >
                   {w}
@@ -196,26 +201,39 @@ const ProductDetails = () => {
 
           <div className="mb-4">
             <p className="font-semibold mb-2">QUANTITY:</p>
-            <div className="flex items-center border rounded w-28">
+            <div className="flex items-center border rounded w-full md:w-1/2">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="px-3 py-1"
+                className="px-3 cursor-pointer py-1"
               >
                 -
               </button>
-              <span className="flex-1 text-center">{quantity}</span>
+
+              <input
+                type="number"
+                value={quantity}
+                onChange={(e) => {
+                  let val = Number(e.target.value);
+                  if (val < 1) val = 1;
+                  setQuantity(val);
+                }}
+                className="flex-1 text-center border-none outline-none bg-transparent"
+              />
+
               <button
                 onClick={() => setQuantity(quantity + 1)}
-                className="px-3 py-1"
+                className="px-3 cursor-pointer py-1"
               >
                 +
               </button>
             </div>
+
+
           </div>
 
           <div className="flex flex-col gap-3 mb-6">
             <button
-              className="bg-[#f4d03c] text-black px-6 py-2 rounded shadow hover:bg-yellow-500 transition"
+              className="bg-[#f4d03c] text-black px-6 py-2 cursor-pointer rounded shadow hover:bg-yellow-500 transition"
               onClick={() => {
                 addToCart({
                   ...product,
@@ -229,7 +247,7 @@ const ProductDetails = () => {
             </button>
 
             <button
-              className="bg-[#f4d03c] text-black px-6 py-2 rounded shadow hover:bg-yellow-500 transition"
+              className="bg-[#f4d03c] text-black px-6 py-2 cursor-pointer rounded shadow hover:bg-yellow-500 transition"
               onClick={handleBuyNow}
             >
               BUY NOW

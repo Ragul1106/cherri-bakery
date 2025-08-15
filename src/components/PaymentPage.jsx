@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import img from "../assets/images/cake_pay.jpg";
 import pay1Img from "../assets/images/upi.png";
 import pay2Img from "../assets/images/wallet.png";
@@ -18,25 +19,36 @@ const PaymentPage = () => {
     category
   } = state || {};
 
-  const handleOrder = () => {
-    navigate("/delivery", { state: { productImage: product?.img } });
-  };
-
-  const [quantity, setQuantity] = useState(initQty || 1);
+  const [quantity, setQuantity] = useState(Number(initQty) || 1);
   const [weight, setWeight] = useState(initWeight || "500 G");
-  const [pricePerUnit] = useState(unitPrice || 0);
+  const [pricePerKg] = useState(Number(unitPrice) || 0); 
   const [discount] = useState(0.15);
   const [deliveryFee] = useState(40);
   const [gstRate] = useState(0.05);
 
-  const getWeightMultiplier = (w) => {
-    const kg = w.toLowerCase().includes("g")
-      ? parseInt(w) / 1000
-      : parseFloat(w);
-    return kg;
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [notes, setNotes] = useState("");
+  const [address, setAddress] = useState("");
+
+  const [selectedPayment, setSelectedPayment] = useState("");
+
+  const getWeightInKg = (w) => {
+    if (!w) return 1;
+    const lower = w.toLowerCase().trim();
+    if (lower.endsWith("kg")) {
+      return parseFloat(lower.replace("kg", "").trim()); 
+    }
+    if (lower.endsWith("g")) {
+      return parseFloat(lower.replace("g", "").trim()) / 1000;
+    }
+    return 1;
   };
 
-  const totalProductPrice = pricePerUnit * getWeightMultiplier(weight) * quantity;
+  const weightInKg = getWeightInKg(weight);
+
+  const totalProductPrice = pricePerKg * weightInKg * quantity;
   const discountAmount = totalProductPrice * discount;
   const gstAmount = (totalProductPrice - discountAmount) * gstRate;
   const total = totalProductPrice - discountAmount + deliveryFee + gstAmount;
@@ -45,14 +57,30 @@ const PaymentPage = () => {
     ? category.toUpperCase()
     : product?.category?.toUpperCase() || "";
 
+  const validateForm = () => {
+    if (!name || !location || !mobile || !notes || !address) {
+      toast.error("Please fill in all address fields");
+      return false;
+    }
+    if (!selectedPayment) {
+      toast.error("Please select a payment method");
+      return false;
+    }
+    return true;
+  };
+
+  const handleOrder = () => {
+    if (!validateForm()) return;
+
+    navigate("/delivery", { state: { productImage: product?.img } });
+  };
+
   return (
     <div className="bg-[#FAF3E7] text-gray-800 min-h-screen p-4 sm:p-8 space-y-10">
-      
       <section className="bg-[#fff5ec] p-6">
-        <h2 className="text-md md:text-xl lg:text-2xl text-center text-[#E57F35] font-bold tracking-wide mb-6">
+        <h2 className="text-md md:text-xl lg:text-2xl text-center text-orange-500 font-bold tracking-wide mb-6">
           PRODUCT DETAILS
         </h2>
-
         <div className="grid md:grid-cols-2 gap-8 items-start max-w-6xl mx-auto">
           <div className="flex justify-center">
             <img
@@ -61,20 +89,16 @@ const PaymentPage = () => {
               className="rounded-lg shadow-lg w-full"
             />
           </div>
-
           <div className="mt-10">
             <p className="text-sm text-gray-600 mb-1">Cherii bakery</p>
-
-            <h3 className="text-2xl font-bold text-[#E57F35] mb-3">
+            <h3 className="text-2xl font-bold text-orange-600 mb-3">
               {product?.title}
             </h3>
-
             <p className="text-lg font-semibold leading-snug mb-4">
               {product?.description}
             </p>
-
-            <p className="text-2xl font-bold">₹ {unitPrice}</p>
-            <p className="text-sm text-gray-500 mb-6">INCL.OF ALL TAXES</p>
+            <p className="text-2xl font-bold">₹ {pricePerKg} / KG</p>
+            <p className="text-sm text-gray-500 mb-6">INCL. OF ALL TAXES</p>
 
             <div className="mb-6">
               <p className="font-semibold">WEIGHT:</p>
@@ -101,7 +125,7 @@ const PaymentPage = () => {
               <div className="flex items-center border border-gray-300 rounded w-28">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-3 py-1 text-lg cursor-pointer font-bold hover:bg-gray-100"
+                  className="px-3 py-1 cursor-pointer text-lg font-bold hover:bg-gray-100"
                 >
                   -
                 </button>
@@ -121,32 +145,56 @@ const PaymentPage = () => {
       </section>
 
       <section className="bg-[#fff5ec] p-6">
-        <h2 className="text-center text-[#E57F35] font-bold text-lg tracking-wide mb-4">
+        <h2 className="text-center text-orange-600 font-bold text-lg tracking-wide mb-4">
           ADD ADDRESS
         </h2>
         <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
           <div className="space-y-6">
-            {["Name*", "Delivery Location*", "Mobile No*", "Add Notes*"].map((label, idx) => (
-              <label key={idx} className="block text-md font-semibold text-gray-700">
-                {label}
-                <input
-                  type="text"
-                  className="mt-1 w-full p-2 bg-[#FFFFFF] border  border-gray-300 rounded shadow-lg shadow-gray-500/50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                />
-              </label>
-            ))}
-
-            <label className="block text-md font-semibold text-gray-700">
+            <label className="block text-md font-medium text-gray-700">
+              Name*
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="mt-1 w-full p-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </label>
+            <label className="block text-md font-medium text-gray-700">
+              Delivery Location*
+              <input
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="mt-1 w-full p-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </label>
+            <label className="block text-md font-medium text-gray-700">
+              Mobile No*
+              <input
+                type="text"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                className="mt-1 w-full p-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </label>
+            <label className="block text-md font-medium text-gray-700">
+              Add Notes*
+              <input
+                type="text"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className="mt-1 w-full p-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </label>
+            <label className="block text-md font-medium text-gray-700">
               Address*
               <textarea
                 rows={3}
-                className="mt-1 w-full p-2 bg-[#FFFFFF]  border border-gray-300 rounded shadow-lg shadow-gray-400/50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="mt-1 w-full p-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
             </label>
-
-            <button className="bg-yellow-400 hover:bg-yellow-500 cursor-pointer w-full py-2 rounded-full font-semibold transition-colors">
-              ADD ADDRESS
-            </button>
           </div>
 
           <div className="flex justify-center">
@@ -160,15 +208,15 @@ const PaymentPage = () => {
       </section>
 
       <section className="bg-[#fff5ec] p-6 space-y-8">
-        <h2 className="text-center text-lg text-[#E57F35] font-bold tracking-wide">
+        <h2 className="text-center text-lg text-orange-600 font-bold tracking-wide">
           PAYMENT OPTIONS
         </h2>
 
         <div className="max-w-4xl mx-auto border border-gray-300 rounded p-6 space-y-6">
-          {[ 
-            { img: pay1Img, label: "Pay UPI", sub: "+Upi Id" },
-            { img: pay2Img, label: "Pay Wallet", sub: "+Wallet Id" },
-            { img: pay3Img, label: "Pay Credit Card", sub: "+Credit Card Id" }
+          {[
+            { img: pay1Img, label: "Pay UPI", sub: "+Upi Id", value: "upi" },
+            { img: pay2Img, label: "Pay Wallet", sub: "+Wallet Id", value: "wallet" },
+            { img: pay3Img, label: "Pay Credit Card", sub: "+Credit Card Id", value: "card" }
           ].map((pay, idx) => (
             <div key={idx} className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3 flex-1">
@@ -185,7 +233,13 @@ const PaymentPage = () => {
                   />
                 </div>
               </div>
-              <input type="checkbox" className="w-4 h-4" />
+              <input
+                type="radio"
+                name="payment"
+                checked={selectedPayment === pay.value}
+                onChange={() => setSelectedPayment(pay.value)}
+                className="w-4 h-4"
+              />
             </div>
           ))}
         </div>
@@ -199,29 +253,29 @@ const PaymentPage = () => {
           </div>
           <div className="flex justify-between">
             <span>TOTAL PRODUCT PRICE</span>
-            <span>+{totalProductPrice}</span>
+            <span>₹ {totalProductPrice.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
             <span>DISCOUNT AMOUNT 15%</span>
-            <span>-{discountAmount}</span>
+            <span>-₹ {discountAmount.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
             <span>DELIVERY FEE</span>
-            <span>+{deliveryFee}</span>
+            <span>+₹ {deliveryFee}</span>
           </div>
           <div className="flex justify-between">
             <span>INCL.GST5%</span>
-            <span>+{gstAmount.toFixed(1)}</span>
+            <span>+₹ {gstAmount.toFixed(2)}</span>
           </div>
 
           <div className="flex justify-between font-bold mt-4">
             <span>TOTAL PRICE AMOUNT</span>
-            <span>₹{total}</span>
+            <span>₹ {total.toFixed(2)}</span>
           </div>
 
           <button
             onClick={handleOrder}
-            className="bg-[#F4D03C] cursor-pointer hover:bg-yellow-500 w-80 py-2 rounded-full font-semibold mt-8 mx-auto block"
+            className="bg-yellow-400 hover:bg-yellow-500 cursor-pointer w-80 py-2 rounded-full font-semibold mt-8 mx-auto block"
           >
             PAY & ORDER NOW
           </button>
