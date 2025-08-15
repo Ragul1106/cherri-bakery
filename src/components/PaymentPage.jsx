@@ -83,7 +83,7 @@ const PaymentPage = () => {
                   <button
                     key={w}
                     onClick={() => setWeight(w)}
-                    className={`px-4 py-1.5 border rounded text-sm font-medium transition-all
+                    className={`px-4 py-1.5 border cursor-pointer rounded text-sm font-medium transition-all
                       ${
                         weight === w
                           ? "bg-yellow-400 border-yellow-500"
@@ -101,7 +101,7 @@ const PaymentPage = () => {
               <div className="flex items-center border border-gray-300 rounded w-28">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-3 py-1 text-lg font-bold hover:bg-gray-100"
+                  className="px-3 py-1 text-lg cursor-pointer font-bold hover:bg-gray-100"
                 >
                   -
                 </button>
@@ -110,7 +110,7 @@ const PaymentPage = () => {
                 </span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="px-3 py-1 text-lg font-bold hover:bg-gray-100"
+                  className="px-3 py-1 text-lg cursor-pointer font-bold hover:bg-gray-100"
                 >
                   +
                 </button>
@@ -144,7 +144,7 @@ const PaymentPage = () => {
               />
             </label>
 
-            <button className="bg-yellow-400 hover:bg-yellow-500 w-full py-2 rounded-full font-semibold transition-colors">
+            <button className="bg-yellow-400 hover:bg-yellow-500 cursor-pointer w-full py-2 rounded-full font-semibold transition-colors">
               ADD ADDRESS
             </button>
           </div>

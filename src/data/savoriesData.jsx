@@ -1,135 +1,135 @@
-import sevoriesImg from "../assets/images/Group 23.png";
-import sevories2 from "../assets/images/Group 24.png";
-import sevories3 from "../assets/images/Group 25.png";
-import sevories4 from "../assets/images/Group_26.png";
-import sevories5 from "../assets/images/Group 27.png";
-import sevories6 from "../assets/images/Group 23.png";
-import sevories7 from "../assets/images/Group 23.png";
-import sevories8 from "../assets/images/Group 23.png";
-import sevories9 from "../assets/images/Group 23.png";
-import sevories10 from "../assets/images/Group 23.png";
-import sevories11 from "../assets/images/Group 23.png";
-import sevories12 from "../assets/images/Group 23.png";
+import savories1 from "../assets/images/savories1.png";
+import savories2 from "../assets/images/savories2.png";
+import savories3 from "../assets/images/savories3.png";
+import savories4 from "../assets/images/savories4.png";
+import savories5 from "../assets/images/savories5.png";
+import savories6 from "../assets/images/savories6.png";
+import savories7 from "../assets/images/savories7.png";
+import savories8 from "../assets/images/savories8.png";
+import savories9 from "../assets/images/savories9.png";
+import savories10 from "../assets/images/savories10.png";
+import savories11 from "../assets/images/savories11.png";
+import savories12 from "../assets/images/savories12.png";
 
 export const savories = [
-  { 
-    id: 1, 
-    img: sevoriesImg, 
-    title: "Masala Chakli", 
-    price: 400, 
-    description: "A crispy spiral snack infused with aromatic spices, perfect for festive occasions and tea-time munching.",
-    nutrition: "Serving Size (100g) – Calories 450 kcal, Fat 20g, Saturated Fat 6g, Trans Fat 0g, Cholesterol 0mg, Sodium 320mg, Carbohydrate 60g, Sugar 2g, Protein 8g.",
-    ingredients: "Rice Flour, Gram Flour, Butter, Sesame Seeds, Chili Powder, Salt, Asafoetida.",
-    allergies: "Contains Sesame. Made in a facility that handles Peanuts, Tree Nuts, Gluten, and Soy."
+  {
+    id: "1",
+    img: savories1,
+    title: "Masala Mathri",
+    price: 600,
+    description: "Crispy spiced Mathri with a hint of masala. Perfect as a tea-time snack.",
+    nutrition: "Serving Size (100g) – Calories 450 kcal, Fat 22g, Carbohydrate 55g, Protein 6g.",
+    ingredients: "Flour, Oil, Salt, Spices",
+    allergies: "Contains Gluten. May contain traces of Nuts."
   },
-  { 
-    id: 2, 
-    img: sevories2, 
-    title: "Kara Boondi", 
-    price: 500, 
-    description: "Tiny, crispy gram flour balls coated with spice, offering a burst of flavor in every bite.",
-    nutrition: "Serving Size (100g) – Calories 470 kcal, Fat 22g, Saturated Fat 5g, Trans Fat 0g, Cholesterol 0mg, Sodium 450mg, Carbohydrate 58g, Sugar 3g, Protein 10g.",
-    ingredients: "Gram Flour, Rice Flour, Salt, Chili Powder, Curry Leaves, Asafoetida.",
-    allergies: "May contain traces of Peanuts, Tree Nuts, Gluten, and Sesame."
+  {
+    id: "2",
+    img: savories2,
+    title: "Namak Para",
+    price: 700,
+    description: "Savory fried Namak Para, crunchy and lightly spiced. A traditional Indian snack.",
+    nutrition: "Serving Size (100g) – Calories 430 kcal, Fat 20g, Carbohydrate 52g, Protein 5g.",
+    ingredients: "Flour, Oil, Salt, Spices",
+    allergies: "Contains Gluten."
   },
-  { 
-    id: 3, 
-    img: sevories3, 
-    title: "Murukku", 
-    price: 600, 
-    description: "Traditional South Indian snack with a crunchy texture and subtle spice blend.",
-    nutrition: "Serving Size (100g) – Calories 460 kcal, Fat 18g, Saturated Fat 5g, Trans Fat 0g, Cholesterol 0mg, Sodium 310mg, Carbohydrate 65g, Sugar 1g, Protein 7g.",
-    ingredients: "Rice Flour, Urad Dal Flour, Butter, Salt, Cumin Seeds, Asafoetida.",
-    allergies: "Contains Dairy. Made in a facility that handles Gluten, Peanuts, and Sesame."
+  {
+    id: "3",
+    img: savories3,
+    title: "Murukku / Chakli",
+    price: 850,
+    description: "Crispy, spiral-shaped South Indian snack made from rice flour and spices.",
+    nutrition: "Serving Size (100g) – Calories 440 kcal, Fat 21g, Carbohydrate 54g, Protein 6g.",
+    ingredients: "Rice Flour, Urad Dal Flour, Oil, Spices",
+    allergies: "Contains Gluten."
   },
-  { 
-    id: 4, 
-    img: sevories4, 
-    title: "Ribbon Pakoda", 
-    price: 450, 
-    description: "Wide, ribbon-shaped crispy snack with a savory, spicy taste.",
-    nutrition: "Serving Size (100g) – Calories 455 kcal, Fat 19g, Saturated Fat 4g, Trans Fat 0g, Cholesterol 0mg, Sodium 340mg, Carbohydrate 64g, Sugar 2g, Protein 9g.",
-    ingredients: "Gram Flour, Rice Flour, Chili Powder, Salt, Curry Leaves, Asafoetida.",
-    allergies: "May contain traces of Gluten, Peanuts, and Sesame."
+  {
+    id: "4",
+    img: savories4,
+    title: "Sav (Plain / Masala)",
+    price: 500,
+    description: "Light and crispy Sav, either plain or spiced with masala. Ideal for evening snacks.",
+    nutrition: "Serving Size (100g) – Calories 410 kcal, Fat 18g, Carbohydrate 50g, Protein 5g.",
+    ingredients: "Flour, Oil, Spices",
+    allergies: "Contains Gluten."
   },
-  { 
-    id: 5, 
-    img: sevories5, 
-    title: "Mixture", 
-    price: 550, 
-    description: "A spicy blend of sev, boondi, nuts, and curry leaves for a flavorful snacking experience.",
-    nutrition: "Serving Size (100g) – Calories 490 kcal, Fat 24g, Saturated Fat 6g, Trans Fat 0g, Cholesterol 0mg, Sodium 500mg, Carbohydrate 60g, Sugar 4g, Protein 11g.",
-    ingredients: "Gram Flour, Rice Flour, Peanuts, Cashews, Curry Leaves, Spices, Salt.",
-    allergies: "Contains Peanuts and Tree Nuts. May contain Gluten and Sesame."
+  {
+    id: "5",
+    img: savories5,
+    title: "Ribbon Pakoda",
+    price: 600,
+    description: "Crunchy and savory ribbon-shaped fried snack. Perfect for munching anytime.",
+    nutrition: "Serving Size (100g) – Calories 430 kcal, Fat 20g, Carbohydrate 53g, Protein 5g.",
+    ingredients: "Rice Flour, Gram Flour, Oil, Spices",
+    allergies: "Contains Gluten."
   },
-  { 
-    id: 6, 
-    img: sevories6, 
-    title: "Omapodi", 
-    price: 500, 
-    description: "Light, crispy strands of spiced gram flour dough flavored with ajwain seeds.",
-    nutrition: "Serving Size (100g) – Calories 440 kcal, Fat 18g, Saturated Fat 5g, Trans Fat 0g, Cholesterol 0mg, Sodium 300mg, Carbohydrate 65g, Sugar 2g, Protein 9g.",
-    ingredients: "Gram Flour, Rice Flour, Ajwain Seeds, Salt, Asafoetida.",
-    allergies: "May contain traces of Gluten, Peanuts, and Sesame."
+  {
+    id: "6",
+    img: savories6,
+    title: "Buffs (10 Types)",
+    price: 1000,
+    description: "Assorted 10 types of crispy Indian savory snacks. Variety pack for all taste preferences.",
+    nutrition: "Serving Size (100g) – Calories 450 kcal, Fat 22g, Carbohydrate 55g, Protein 6g.",
+    ingredients: "Varies per snack: Flour, Oil, Spices",
+    allergies: "Contains Gluten. May contain traces of Nuts."
   },
-  { 
-    id: 7, 
-    img: sevories7, 
-    title: "Sev", 
-    price: 480, 
-    description: "Thin, crispy noodles of gram flour seasoned with spices, ideal for garnishing or snacking.",
-    nutrition: "Serving Size (100g) – Calories 450 kcal, Fat 20g, Saturated Fat 5g, Trans Fat 0g, Cholesterol 0mg, Sodium 320mg, Carbohydrate 62g, Sugar 2g, Protein 9g.",
-    ingredients: "Gram Flour, Rice Flour, Turmeric, Salt, Asafoetida.",
-    allergies: "May contain traces of Gluten, Peanuts, and Sesame."
+  {
+    id: "7",
+    img: savories7,
+    title: "Khakhar",
+    price: 1200,
+    description: "Crispy, flaky Khakhar. Light, crunchy, and mildly spiced Indian savory.",
+    nutrition: "Serving Size (100g) – Calories 460 kcal, Fat 24g, Carbohydrate 56g, Protein 5g.",
+    ingredients: "Flour, Oil, Salt, Spices",
+    allergies: "Contains Gluten."
   },
-  { 
-    id: 8, 
-    img: sevories8, 
-    title: "Thattai", 
-    price: 520, 
-    description: "Crispy, spiced rice crackers made with lentils and curry leaves for an authentic taste.",
-    nutrition: "Serving Size (100g) – Calories 430 kcal, Fat 16g, Saturated Fat 4g, Trans Fat 0g, Cholesterol 0mg, Sodium 310mg, Carbohydrate 68g, Sugar 2g, Protein 7g.",
-    ingredients: "Rice Flour, Urad Dal, Curry Leaves, Chili Powder, Butter, Salt.",
-    allergies: "Contains Dairy. Made in a facility that handles Gluten, Peanuts, and Sesame."
+  {
+    id: "8",
+    img: savories8,
+    title: "Mixture",
+    price: 600,
+    description: "A mix of crispy lentils, nuts, and fried snacks. Spicy, tangy, and addictive.",
+    nutrition: "Serving Size (100g) – Calories 440 kcal, Fat 21g, Carbohydrate 54g, Protein 6g.",
+    ingredients: "Lentils, Peanuts, Spices, Oil",
+    allergies: "Contains Nuts and Gluten."
   },
-  { 
-    id: 9, 
-    img: sevories9, 
-    title: "Banana Chips", 
-    price: 530, 
-    description: "Thinly sliced raw banana chips fried to golden perfection with a sprinkle of salt.",
-    nutrition: "Serving Size (100g) – Calories 520 kcal, Fat 30g, Saturated Fat 12g, Trans Fat 0g, Cholesterol 0mg, Sodium 200mg, Carbohydrate 60g, Sugar 2g, Protein 3g.",
-    ingredients: "Raw Banana, Coconut Oil, Salt.",
-    allergies: "Made in a facility that handles Peanuts, Tree Nuts, and Gluten."
+  {
+    id: "9",
+    img: savories9,
+    title: "Savory Muffins",
+    price: 1250,
+    description: "Soft, fluffy savory muffins loaded with herbs and spices. Great for parties or breakfast.",
+    nutrition: "Serving Size (100g) – Calories 400 kcal, Fat 18g, Carbohydrate 50g, Protein 6g.",
+    ingredients: "Flour, Butter, Eggs, Cheese, Herbs",
+    allergies: "Contains Gluten, Milk, and Eggs."
   },
-  { 
-    id: 10, 
-    img: sevories10, 
-    title: "Peanut Chikki", 
-    price: 560, 
-    description: "Traditional Indian brittle made with roasted peanuts and jaggery.",
-    nutrition: "Serving Size (100g) – Calories 560 kcal, Fat 28g, Saturated Fat 6g, Trans Fat 0g, Cholesterol 0mg, Sodium 20mg, Carbohydrate 55g, Sugar 40g, Protein 15g.",
-    ingredients: "Roasted Peanuts, Jaggery.",
-    allergies: "Contains Peanuts. Made in a facility that handles Tree Nuts and Sesame."
+  {
+    id: "10",
+    img: savories10,
+    title: "Mini Quiches",
+    price: 900,
+    description: "Tiny, baked quiches with a variety of fillings. Savory, cheesy, and delicious.",
+    nutrition: "Serving Size (100g) – Calories 420 kcal, Fat 20g, Carbohydrate 45g, Protein 7g.",
+    ingredients: "Flour, Eggs, Cheese, Vegetables, Butter",
+    allergies: "Contains Gluten, Milk, and Eggs."
   },
-  { 
-    id: 11, 
-    img: sevories11, 
-    title: "Masala Peanuts", 
-    price: 580, 
-    description: "Crispy, spiced coating over roasted peanuts for a crunchy and flavorful snack.",
-    nutrition: "Serving Size (100g) – Calories 550 kcal, Fat 30g, Saturated Fat 7g, Trans Fat 0g, Cholesterol 0mg, Sodium 400mg, Carbohydrate 45g, Sugar 4g, Protein 18g.",
-    ingredients: "Peanuts, Gram Flour, Rice Flour, Spices, Salt.",
-    allergies: "Contains Peanuts. Made in a facility that handles Tree Nuts and Sesame."
+  {
+    id: "11",
+    img: savories11,
+    title: "Garlic Knots",
+    price: 700,
+    description: "Soft bread knots brushed with garlic butter and herbs. A savory treat for all occasions.",
+    nutrition: "Serving Size (100g) – Calories 390 kcal, Fat 15g, Carbohydrate 60g, Protein 5g.",
+    ingredients: "Flour, Butter, Garlic, Yeast, Herbs",
+    allergies: "Contains Gluten, Milk."
   },
-  { 
-    id: 12, 
-    img: sevories12, 
-    title: "Mixture Deluxe", 
-    price: 600, 
-    description: "Premium mixture blend with boondi, sev, nuts, and crunchy bites for festive snacking.",
-    nutrition: "Serving Size (100g) – Calories 500 kcal, Fat 25g, Saturated Fat 6g, Trans Fat 0g, Cholesterol 0mg, Sodium 480mg, Carbohydrate 58g, Sugar 4g, Protein 12g.",
-    ingredients: "Gram Flour, Rice Flour, Peanuts, Cashews, Curry Leaves, Spices, Salt.",
-    allergies: "Contains Peanuts and Tree Nuts. May contain Gluten and Sesame."
+  {
+    id: "12",
+    img: savories12,
+    title: "Salted Pretzels",
+    price: 850,
+    description: "Crispy and salty pretzels with a perfect golden crust. Ideal for snacking or with dips.",
+    nutrition: "Serving Size (100g) – Calories 410 kcal, Fat 14g, Carbohydrate 65g, Protein 6g.",
+    ingredients: "Flour, Salt, Butter, Yeast",
+    allergies: "Contains Gluten, Milk."
   },
 ];

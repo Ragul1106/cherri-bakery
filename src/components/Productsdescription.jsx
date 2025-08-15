@@ -1,21 +1,67 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { savories } from "../data/savoriesData";
-import { rusk } from "../data/ruskData";
-import { cake } from "../data/cakeData";
-import { sweet } from "../data/sweetData";
 import lockIcon from "../assets/images/pay.jpg";
 import timerIcon from "../assets/images/24hour.jpg";
 import vegIcon from "../assets/images/vege.jpg";
 import Like_Products from "../components/Like_Products";
+import { savories } from "../data/savoriesData";
+import { rusk } from "../data/ruskData";
+import { cake } from "../data/cakeData";
+import { cookies } from "../data/cookiesData";
+import { pastries } from "../data/pastriesData";
+import { sweet } from "../data/sweetData";
+import { bread } from "../data/breadData";
+import { giftbox } from "../data/giftboxData";
+import { chocolate } from "../data/chocolateData";
 import { useCart } from "../context/CartContext";
+import { chips } from "../data/chipsData";
+import { creamRoll } from "../data/creamRollData";
+import { muffins } from "../data/muffinsData";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const { id } = useParams();
 
-  const products = [...savories, ...rusk, ...cake, ...sweet];
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  const handleBuyNow = () => {
+    if (!loggedInUser) {
+      toast.error("Please login before making a purchase");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+
+      return;
+    }
+
+    navigate("/payment", {
+      state: {
+        product,
+        selectedWeight,
+        quantity,
+        pincode,
+        unitPrice: product.price,
+        category,
+      },
+    });
+  };
+
+  const products = [
+    ...savories,
+    ...rusk,
+    ...cake,
+    ...sweet,
+    ...cookies,
+    ...pastries,
+    ...giftbox,
+    ...chocolate,
+    ...bread,
+    ...chips,
+    ...creamRoll,
+    ...muffins
+  ];
   const product = products.find((p) => String(p.id) === id);
 
   const [selectedWeight, setSelectedWeight] = useState("500 G");
@@ -33,12 +79,28 @@ const ProductDetails = () => {
     (savories.includes(product)
       ? "SAVORIES"
       : rusk.includes(product)
-      ? "RUSK"
-      : cake.includes(product)
-      ? "CAKE"
-      : sweet.includes(product)
-      ? "SWEET"
-      : "UNKNOWN");
+        ? "RUSK"
+        : cake.includes(product)
+          ? "CAKE"
+          : sweet.includes(product)
+            ? "SWEET"
+            : cookies.includes(product)
+              ? "COOKIES"
+              : pastries.includes(product)
+                ? "PASTRIES"
+                : giftbox.includes(product)
+                  ? "GIFT BOX"
+                  : chocolate.includes(product)
+                    ? "CHOCOLATES"
+                    : bread.includes(product)
+                      ? "BREAD"
+                      : chips.includes(product)
+                        ? "CHIPS"
+                        : creamRoll.includes(product)
+                          ? "CREAM ROLL"
+                          : muffins.includes(product)
+                            ? "MUFFINS"
+                            : "UNKNOWN");
 
   return (
     <section className="bg-[#FAF3E7] py-8 min-h-screen">
@@ -64,14 +126,22 @@ const ProductDetails = () => {
 
             <div className="flex items-center gap-4 text-base md:text-md">
               <div className="w-12 h-12 rounded-full bg-[#d99a6c] flex items-center justify-center">
-                <img src={lockIcon} alt="Secure Payment" className="w-10 h-10" />
+                <img
+                  src={lockIcon}
+                  alt="Secure Payment"
+                  className="w-10 h-10"
+                />
               </div>
               <span>100% secure payment</span>
             </div>
 
             <div className="flex items-center gap-4 text-base md:text-md mt-2">
               <div className="w-12 h-12 rounded-full bg-[#d99a6c] flex items-center justify-center">
-                <img src={timerIcon} alt="Preparation Time" className="w-10 h-10" />
+                <img
+                  src={timerIcon}
+                  alt="Preparation Time"
+                  className="w-10 h-10"
+                />
               </div>
               <span>24 hour preparation time</span>
             </div>
@@ -91,7 +161,7 @@ const ProductDetails = () => {
 
         <div className="mt-10">
           <p className="text-sm text-gray-500 mb-1">Cherii Bakery</p>
-          <h2 className="uppercase text-xl md:text-2xl lg:text-3xl font-bold text-[#d99a6c] mb-3">
+          <h2 className="uppercase text-xl md:text-2xl lg:text-3xl font-bold text-[#e57f35] mb-3">
             {product.title}
           </h2>
 
@@ -102,7 +172,9 @@ const ProductDetails = () => {
           <p className="text-md md:text-md lg:text-xl font-bold text-gray-800 mb-2">
             ₹ {product.price}
           </p>
-          <p className="uppercase text-sm text-gray-500 mb-4">Incl. of all taxes</p>
+          <p className="uppercase text-sm text-gray-500 mb-4">
+            Incl. of all taxes
+          </p>
 
           <div className="mb-4">
             <p className="font-semibold mb-2">WEIGHT:</p>
@@ -111,11 +183,10 @@ const ProductDetails = () => {
                 <button
                   key={w}
                   onClick={() => setSelectedWeight(w)}
-                  className={`px-3 py-1 border rounded-md text-sm ${
-                    selectedWeight === w
-                      ? "bg-yellow-400 border-yellow-500"
+                  className={`px-3 py-1 border rounded-md text-sm ${selectedWeight === w
+                      ? "bg-[#f4d03c] border-[#f4d03c]"
                       : "bg-white border-gray-300"
-                  }`}
+                    }`}
                 >
                   {w}
                 </button>
@@ -133,7 +204,10 @@ const ProductDetails = () => {
                 -
               </button>
               <span className="flex-1 text-center">{quantity}</span>
-              <button onClick={() => setQuantity(quantity + 1)} className="px-3 py-1">
+              <button
+                onClick={() => setQuantity(quantity + 1)}
+                className="px-3 py-1"
+              >
                 +
               </button>
             </div>
@@ -141,13 +215,13 @@ const ProductDetails = () => {
 
           <div className="flex flex-col gap-3 mb-6">
             <button
-              className="bg-yellow-400 text-black px-6 py-2 rounded shadow hover:bg-yellow-500 transition"
+              className="bg-[#f4d03c] text-black px-6 py-2 rounded shadow hover:bg-yellow-500 transition"
               onClick={() => {
                 addToCart({
                   ...product,
                   selectedWeight,
                   quantity,
-                  category 
+                  category,
                 });
               }}
             >
@@ -155,19 +229,8 @@ const ProductDetails = () => {
             </button>
 
             <button
-              className="bg-yellow-400 text-black px-6 py-2 rounded shadow hover:bg-yellow-500 transition"
-              onClick={() => {
-                navigate("/payment", {
-                  state: {
-                    product,
-                    selectedWeight,
-                    quantity,
-                    pincode,
-                    unitPrice: product.price,
-                    category 
-                  },
-                });
-              }}
+              className="bg-[#f4d03c] text-black px-6 py-2 rounded shadow hover:bg-yellow-500 transition"
+              onClick={handleBuyNow}
             >
               BUY NOW
             </button>
@@ -175,7 +238,9 @@ const ProductDetails = () => {
           <div className="space-y-3">
             {product.nutrition && (
               <div className="border p-3 rounded-lg bg-white shadow-sm">
-                <h4 className="font-semibold text-xl md:text-2xl">Nutrition:</h4>
+                <h4 className="font-semibold text-xl md:text-2xl">
+                  Nutrition:
+                </h4>
                 <p className="ms-10 text-sm md:text-md leading-tight text-gray-600">
                   {product.nutrition}
                 </p>
@@ -183,7 +248,9 @@ const ProductDetails = () => {
             )}
             {product.ingredients && (
               <div className="border p-3 rounded-lg bg-white shadow-sm">
-                <h4 className="font-semibold text-xl md:text-2xl">Ingredients:</h4>
+                <h4 className="font-semibold text-xl md:text-2xl">
+                  Ingredients:
+                </h4>
                 <p className="ms-10 text-sm md:text-md leading-tight text-gray-600">
                   {product.ingredients}
                 </p>
@@ -191,7 +258,9 @@ const ProductDetails = () => {
             )}
             {product.allergies && (
               <div className="border p-3 rounded-lg bg-white shadow-sm">
-                <h4 className="font-semibold text-xl md:text-2xl">Allergies:</h4>
+                <h4 className="font-semibold text-xl md:text-2xl">
+                  Allergies:
+                </h4>
                 <p className="ms-10 text-sm md:text-md leading-tight text-gray-600">
                   {product.allergies}
                 </p>

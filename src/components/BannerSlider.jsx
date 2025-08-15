@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import banner1 from "../assets/images/slide1.png";
@@ -6,21 +7,22 @@ import banner2 from "../assets/images/slide2.png";
 import banner3 from "../assets/images/slide3.png";
 import banner4 from "../assets/images/slide4.png";
 
-import arrow1 from "../assets/images/arrow2.png";
-import arrow2 from "../assets/images/arrow1.png";
-import arrow3 from "../assets/images/arrow3.png";
-import arrow4 from "../assets/images/arrow4.png";
+import arrow1 from "../assets/images/polygon.png";
+import arrow2 from "../assets/images/polygon2.png";
+import arrow3 from "../assets/images/polygon3.png";
+import arrow4 from "../assets/images/polygon4.png";
+
 
 const banners = [
   {
-    title: "Baked with Love, Served with Joy",
+    title: "Baked with Love, Served  Joy",
       subtitle: "Freshly baked breads, cakes, and pastries made daily with the finest ingredients",
     bannerImg: banner1,
     arrowImg: arrow1,
     textClass: "text-gray-900",
   },
   {
-    title: "Crafting Artisan Bakes Since 2012",
+    title: "Crafting Artisan Since 2012",
      subtitle: "Freshly baked breads, cakes, and pastries made daily with the fineExperience the rich tradition of baking with every bite.st ingredients",
     bannerImg: banner2,
     arrowImg: arrow2,
@@ -44,6 +46,8 @@ const banners = [
 
 const BannerSlider = () => {
   const [current, setCurrent] = useState(0);
+
+  const navigate = useNavigate();
 
   const nextSlide = () => {
     setCurrent((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
@@ -90,7 +94,9 @@ const BannerSlider = () => {
               >
                 {banner.subtitle}
               </p>
-              <button className="mt-4 px-5 py-2 bg-yellow-400 hover:bg-yellow-500 font-semibold text-black rounded-full">
+              <button 
+                onClick={() => navigate("/our-products")}
+                className="mt-4 px-5 py-2 bg-yellow-400 cursor-pointer hover:bg-yellow-500 font-semibold text-black rounded-full">
                 EXPLORE NOW
               </button>
             </div>
