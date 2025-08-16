@@ -13,14 +13,14 @@ import arrow4 from "../assets/images/polygon4.png";
 const banners = [
   {
     title: "Baked with Love, Served  Joy",
-      subtitle: "Freshly baked breads, cakes, and pastries made daily with the finest ingredients",
+    subtitle: "Freshly baked breads, cakes, and pastries made daily with the finest ingredients",
     bannerImg: banner1,
     arrowImg: arrow1,
     textClass: "text-gray-900",
   },
   {
     title: "Crafting Artisan Since 2012",
-     subtitle: "Freshly baked breads, cakes, and pastries made daily with the fineExperience the rich tradition of baking with every bite.st ingredients",
+    subtitle: "Freshly baked breads, cakes, and pastries made daily with the fineExperience the rich tradition of baking with every bite.st ingredients",
     bannerImg: banner2,
     arrowImg: arrow2,
     textClass: "text-white",
@@ -64,37 +64,38 @@ const BannerSlider = () => {
       {banners.map((banner, index) => (
         <div
           key={index}
-          className={`absolute w-full h-full transition-opacity duration-700 ${
-            index === current ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute w-full h-full transition-opacity duration-700 ${index === current
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+            }`}
         >
           <img
             src={banner.bannerImg}
             alt={banner.title}
             className="w-full h-full object-cover"
           />
-
           <div className="absolute top-0 left-5 max-w-[90%] sm:max-w-[80%] md:max-w-[350px] lg:max-w-[500px]">
-  <img
-    src={banner.arrowImg}
-    alt="arrow shape"
-    className="w-full h-auto brightness-110 opacity-80"
-  />
-  <div className="absolute inset-0 flex flex-col items-center text-center px-2 sm:px-4">
-    <h2 className="text-base sm:text-md md:text-lg lg:text-3xl font-bold mt-10 sm:mt-14 leading-snug break-words">
-      {banner.title}
-    </h2>
-    <p className={`my-3 sm:my-5 px-2 sm:px-6 md:px-6 lg:px-10 text-[10px] sm:text-sm md:text-md lg:text-lg font-semibold leading-relaxed break-words ${banner.textClass}`}>
-      {banner.subtitle}
-    </p>
-    <Link to="/our-products">
-      <button className="mt-4 md:mt-1 lg:mt-4 px-4 sm:px-5 py-2 bg-[#F4d03c] hover:bg-yellow-100 font-semibold text-black rounded-full text-xs sm:text-sm md:text-base">
-        EXPLORE NOW
-      </button>
-    </Link>
-  </div>
-</div>
-
+            <img
+              src={banner.arrowImg}
+              alt="arrow shape"
+              className="w-full h-auto brightness-110 opacity-80"
+            />
+            <div className="absolute inset-0 flex flex-col justify-around items-center text-center px-3 sm:px-5 py-10">
+              <h2 className="text-sm sm:text-base md:text-lg lg:text-3xl font-bold leading-snug break-words">
+                {banner.title}
+              </h2>
+              <p
+                className={`my-2 sm:my-3 text-[10px] sm:text-sm md:text-base lg:text-lg font-semibold leading-relaxed break-words ${banner.textClass}`}
+              >
+                {banner.subtitle}
+              </p>
+              <Link to="/our-products">
+                <button className="px-4 sm:px-6 py-2 bg-[#F4d03c] hover:bg-yellow-100 font-semibold text-black rounded-full text-xs sm:text-sm md:text-base cursor-pointer">
+                  EXPLORE NOW
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       ))}
     </div>

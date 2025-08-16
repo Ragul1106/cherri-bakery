@@ -30,11 +30,12 @@ export const Navbar = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [showModal, setShowModal] = useState(false);
+
   const handleSearch = () => {
     if (!searchTerm.trim()) return;
 
     const foundProduct = products.find(
-      (p) => p.title.toLowerCase() === searchTerm.trim().toLowerCase()
+      (p) => p.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
     );
 
     if (foundProduct) {
@@ -43,7 +44,9 @@ export const Navbar = () => {
     } else {
       setShowModal(true);
     }
+    setSearchTerm("");
   };
+
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") handleSearch();
@@ -51,7 +54,7 @@ export const Navbar = () => {
 
 
   return (
-   <nav className="bg-[#D99A6C] px-4 lg:px-8 py-4 flex items-center justify-between h-28 z-9999 fixed top-0 left-0 w-full">
+    <nav className="bg-[#D99A6C] px-4 lg:px-8 py-4 flex items-center justify-between h-28 z-9999 fixed top-0 left-0 w-full">
       <img src={logo} alt="logo" className="w-20 h-16 lg:w-26 lg:h-24 flex-shrink-0" />
 
       <div className="hidden xl:flex flex-col justify-between h-full py-1 flex-1 mx-8">
@@ -82,7 +85,7 @@ export const Navbar = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="outline-none text-sm w-full placeholder-gray-400"
+            className="outline-none text-sm w-full py-1 placeholder-gray-400"
           />
         </div>
       </div>
@@ -93,7 +96,7 @@ export const Navbar = () => {
             <IoMdHeartEmpty />
           </Link>
           {/* <Link to="/notify" className="text-xl cursor-pointer"> */}
-            <CgBell />
+          <CgBell />
           {/* </Link> */}
           <Link to="/cart" className="relative text-xl cursor-pointer">
             <MdOutlineShoppingBag />
@@ -108,7 +111,7 @@ export const Navbar = () => {
         {loggedInUser ? (
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 cursor-pointer px-8 lg:px-12 py-2 mt-2 rounded-xl font-bold text-white text-sm lg:text-base"
+            className="bg-[#ec2049] hover:bg-[#F3E5AB] hover:text-[#ec2049] cursor-pointer px-8 lg:px-12 py-2 mt-2 rounded-xl font-bold text-white text-sm lg:text-base"
           >
             LOGOUT
           </button>
@@ -128,6 +131,41 @@ export const Navbar = () => {
       >
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
+
+
+      {showModal && (
+<div className="fixed inset-0 flex items-center justify-center bg-black/70 z-[99999]">
+
+          <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+            <h2 className="text-lg font-bold mb-4 text-center text-red-600">Item not found</h2>
+            <p className="text-sm text-gray-600 mb-3 text-center">Available items:</p>
+            <ul className="space-y-2 max-h-40 overflow-y-auto">
+              {products.map((p, idx) => (
+                <li
+                  key={idx}
+                  className="cursor-pointer text-blue-600 hover:underline text-sm"
+                  onClick={() => {
+                    navigate(p.link);
+                    setShowModal(false);
+                  }}
+                >
+                  {p.title}
+                </li>
+              ))}
+            </ul>
+            <div className="flex justify-center mt-4">
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-gray-300 hover:bg-gray-400 cursor-pointer px-4 py-2 rounded-lg font-semibold text-sm"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
 
       {menuOpen && (
         <div className="absolute top-28 left-0 w-full bg-[#D99A6C] p-4 xl:hidden shadow-lg">
@@ -163,7 +201,7 @@ export const Navbar = () => {
                 <FaHeart className="text-xl cursor-pointer" />
               </Link>
               {/* <Link to="/notify" onClick={() => setMenuOpen(false)}> */}
-                <FaBell className="text-xl cursor-pointer" />
+              <FaBell className="text-xl cursor-pointer" />
               {/* </Link> */}
               <Link to="/cart" className="relative" onClick={() => setMenuOpen(false)}>
                 <FaShoppingBag className="text-xl cursor-pointer" />

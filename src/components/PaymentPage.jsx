@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 import defaultCakeImg from "../assets/images/cake_pay.jpg";
 import pay1Img from "../assets/images/upi.png";
 import pay2Img from "../assets/images/wallet.png";
@@ -12,6 +13,7 @@ import designs from "../assets/images/faq1.png";
 const PaymentPage = () => {
   const navigate = useNavigate();
   const { cart, updateQuantity, updateWeight, clearCart } = useCart();
+  const { user } = useAuth();
   const location = useLocation();
   const { cartItems = [] } = location.state || {};
 
@@ -104,6 +106,13 @@ const PaymentPage = () => {
   };
 
   const handleOrder = () => {
+
+    if (!user) {
+      toast.error("⚠️ You must login before pay");
+      navigate("/login"); 
+      return;
+    }
+
     if (!validateForm()) return;
 
     const orderImages = itemsToDisplay.map((item) => item.img || defaultCakeImg);
@@ -250,7 +259,7 @@ const PaymentPage = () => {
             >
               <div className="flex items-center gap-3 flex-1">
                 <div className="w-14 h-14 rounded-full bg-[#d99a6c] flex items-center justify-center shrink-0">
-                  <img src={img} alt={label} className="w-10 h-10" />
+                  <img src={img} alt={label} className="w-8 h-8" />
                 </div>
                 <div className="flex-1">
                   <p className="font-semibold">{label}</p>
@@ -275,7 +284,6 @@ const PaymentPage = () => {
           ))}
         </div>
 
-        {/* Bill Summary */}
         <div className="max-w-4xl mx-auto space-y-6 text-sm font-bold">
           <div className="flex justify-between items-start">
             <span>QUANTITY</span>
@@ -311,7 +319,7 @@ const PaymentPage = () => {
 
           <button
             onClick={handleOrder}
-            className="w-80 py-2 rounded-full font-semibold mt-8 mx-auto block bg-[#F4d03c] hover:bg-yellow-200"
+            className="w-80 py-2 rounded-full cursor-pointer font-semibold mt-8 mx-auto block bg-[#F4d03c] hover:bg-yellow-200"
           >
             PAY & ORDER NOW
           </button>
