@@ -52,7 +52,8 @@ const TruckOrder = ({ orderDate, deliveryDate }) => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between bg-[#FEF6EC] p-6 md:p-10 gap-10 md:gap-20">
+    <div className="flex flex-col md:flex-row items-center justify-between p-6 md:p-10 gap-10 md:gap-20">
+      {/* Steps */}
       <div className="flex flex-col">
         <h2 className="font-bold text-xl mb-6">TRACK YOUR ORDER</h2>
         <div className="flex flex-col">

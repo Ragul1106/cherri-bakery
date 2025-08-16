@@ -4,7 +4,7 @@ import cake from "../assets/images/cake.png";
 
 const BakeryBlog = () => {
     return (
-        <main className="bg-[#F8F1E9] text-[#0F0F0F] px-6 md:px-20 py-10 font-sans">
+        <main className="mt-20 md:mt-28 lg:mt-28 bg-[#FFF8F0] text-[#0F0F0F] px-6 md:px-20 py-10 font-sans">
             <h1 className="text-center text-[20px] md:text-[36px] font-bold text-[#E57F35] mb-8">
                 Welcome to Our Bakery Blog
             </h1>

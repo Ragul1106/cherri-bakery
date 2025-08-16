@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import lockIcon from "../assets/images/pay.jpg";
-import timerIcon from "../assets/images/24hour.jpg";
-import vegIcon from "../assets/images/vege.jpg";
+import lockIcon from "../assets/images/pay.png";
+import timerIcon from "../assets/images/24hour.png";
+import vegIcon from "../assets/images/vege.png";
 import Like_Products from "../components/Like_Products";
 import { savories } from "../data/savoriesData";
 import { rusk } from "../data/ruskData";
@@ -28,9 +28,16 @@ const ProductDetails = () => {
 
   const handleBuyNow = () => {
     if (!pincode || pincode.trim() === "") {
-    toast.error("Please enter your pincode before proceeding");
-    return;
-  }
+      toast.error("Please enter your pincode before proceeding");
+      return;
+    }
+
+    const pincodeRegex = /^[0-9]{6}$/;
+    if (!pincodeRegex.test(pincode)) {
+      toast.error("Pincode must be exactly 6 digits and contain only numbers");
+      return;
+    }
+
 
     if (!loggedInUser) {
       toast.error("Please login before making a purchase");
@@ -43,12 +50,16 @@ const ProductDetails = () => {
 
     navigate("/payment", {
       state: {
-        product,
-        selectedWeight,
-        quantity,
-        pincode,
-        unitPrice: product.price,
-        category,
+        cartItems: [
+          {
+            ...product,
+            category,
+            quantity,
+            selectedWeight,
+            pincode,
+            unitPrice: product.price,
+          },
+        ],
       },
     });
   };
@@ -108,7 +119,7 @@ const ProductDetails = () => {
                             : "UNKNOWN");
 
   return (
-    <section className="bg-[#FAF3E7] py-8 min-h-screen">
+    <section className="mt-28 md:mt-28 lg:mt-28 bg-[#FFF8F0] py-8 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
           <img

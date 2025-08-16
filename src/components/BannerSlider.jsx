@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
 import banner1 from "../assets/images/slide1.png";
 import banner2 from "../assets/images/slide2.png";
 import banner3 from "../assets/images/slide3.png";
 import banner4 from "../assets/images/slide4.png";
-
 import arrow1 from "../assets/images/polygon.png";
 import arrow2 from "../assets/images/polygon2.png";
 import arrow3 from "../assets/images/polygon3.png";
@@ -77,45 +74,29 @@ const BannerSlider = () => {
             className="w-full h-full object-cover"
           />
 
-          <div className="absolute top-5 left-5 w-[250px] sm:w-[300px] md:w-[350px] lg:w-[500px]">
-            <img
-              src={banner.arrowImg}
-              alt="arrow shape"
-              className="w-full h-auto brightness-110 opacity-80"
-            />
-            <div className="absolute inset-0 flex flex-col items-center text-center px-4">
-              <h2
-                className={`text-lg md:text-xl lg:text-3xl font-bold mt-14`}
-              >
-                {banner.title}
-              </h2>
-              <p
-                className={`my-5 px-10 text-xs sm:text-sm md:text-lg font-semibold ${banner.textClass}`}
-              >
-                {banner.subtitle}
-              </p>
-              <button 
-                onClick={() => navigate("/our-products")}
-                className="mt-4 px-5 py-2 bg-yellow-400 cursor-pointer hover:bg-yellow-500 font-semibold text-black rounded-full">
-                EXPLORE NOW
-              </button>
-            </div>
-          </div>
+          <div className="absolute top-0 left-5 max-w-[90%] sm:max-w-[80%] md:max-w-[350px] lg:max-w-[500px]">
+  <img
+    src={banner.arrowImg}
+    alt="arrow shape"
+    className="w-full h-auto brightness-110 opacity-80"
+  />
+  <div className="absolute inset-0 flex flex-col items-center text-center px-2 sm:px-4">
+    <h2 className="text-base sm:text-md md:text-lg lg:text-3xl font-bold mt-10 sm:mt-14 leading-snug break-words">
+      {banner.title}
+    </h2>
+    <p className={`my-3 sm:my-5 px-2 sm:px-6 md:px-6 lg:px-10 text-[10px] sm:text-sm md:text-md lg:text-lg font-semibold leading-relaxed break-words ${banner.textClass}`}>
+      {banner.subtitle}
+    </p>
+    <Link to="/our-products">
+      <button className="mt-4 md:mt-1 lg:mt-4 px-4 sm:px-5 py-2 bg-[#F4d03c] hover:bg-yellow-100 font-semibold text-black rounded-full text-xs sm:text-sm md:text-base">
+        EXPLORE NOW
+      </button>
+    </Link>
+  </div>
+</div>
+
         </div>
       ))}
-
-      {/* <button
-        onClick={prevSlide}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white p-2 rounded-full bg-black/30 hover:bg-black/50"
-      >
-        <FaChevronLeft size={20} />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white p-2 rounded-full bg-black/30 hover:bg-black/50"
-      >
-        <FaChevronRight size={20} />
-      </button> */}
     </div>
   );
 };

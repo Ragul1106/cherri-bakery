@@ -75,7 +75,7 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="bg-[#faf3eb] min-h-screen flex flex-col items-center py-10">
+    <section className="mt-20 md:mt-28 lg:mt-28 bg-[#FFF8F0] min-h-screen flex flex-col items-center py-10">
       <h2 className="text-[#e7833c] font-bold text-xl md:text-4xl uppercase text-center">
         Send Us a Message
       </h2>

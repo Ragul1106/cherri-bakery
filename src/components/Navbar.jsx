@@ -51,7 +51,7 @@ export const Navbar = () => {
 
 
   return (
-    <nav className="bg-[#D99A6C] px-4 lg:px-8 py-4 flex items-center justify-between h-28 z-50 relative">
+   <nav className="bg-[#D99A6C] px-4 lg:px-8 py-4 flex items-center justify-between h-28 z-9999 fixed top-0 left-0 w-full">
       <img src={logo} alt="logo" className="w-20 h-16 lg:w-26 lg:h-24 flex-shrink-0" />
 
       <div className="hidden xl:flex flex-col justify-between h-full py-1 flex-1 mx-8">
@@ -84,11 +84,6 @@ export const Navbar = () => {
             onKeyDown={handleKeyDown}
             className="outline-none text-sm w-full placeholder-gray-400"
           />
-          {/* <input
-            type="text"
-            placeholder="SEARCH HERE"
-            className="bg-transparent outline-none w-full text-gray-500 font-semibold uppercase placeholder-gray-400"
-          /> */}
         </div>
       </div>
 

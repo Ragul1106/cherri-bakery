@@ -12,7 +12,7 @@ export default function AboutUs() {
   const cards = [card1, card2, card3, card4, card5];
 
   return (
-    <div className="bg-white text-gray-900">
+    <div className="mt-20 md:mt-28 lg:mt-28 bg-[#FFF8F0]  text-gray-900">
       <section className="max-w-6xl mx-auto px-6 py-12">
         <h2 className="text-center text-[#e7833c] font-bold text-2xl mb-4">ABOUT US</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">

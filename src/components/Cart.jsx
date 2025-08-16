@@ -1,15 +1,17 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
-import { TbTrashOff } from "react-icons/tb";
+import { FaTrash } from "react-icons/fa";
+
+const weights = ["500 G", "1 KG", "2 KG", "3 KG", "4 KG", "5 KG"];
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, clearCart, updateQuantity, updateWeight } =
+    useCart();
 
   return (
-    <section className="bg-[#FFF8F0] py-10 min-h-screen">
+    <section className="mt-20 md:mt-28 lg:mt-28 bg-[#FFF8F0] py-10 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 flex flex-col">
-     
         <div className="flex justify-end gap-3 mb-6">
           {cart.length > 0 && (
             <>
@@ -22,13 +24,7 @@ const Cart = () => {
 
               <Link
                 to="/payment"
-                state={{
-                  product: cart[0],
-                  selectedWeight: cart[0].selectedWeight,
-                  quantity: cart[0].quantity,
-                  unitPrice: cart[0].price,
-                  category: cart[0].category || "Unknown" 
-                }}
+                state={{ cartItems: cart }}
                 className="px-4 py-2 border border-[#E3C46D] rounded-full font-semibold text-black"
               >
                 NEXT
@@ -36,11 +32,12 @@ const Cart = () => {
             </>
           )}
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {cart.length > 0 ? (
             cart.map((item) => (
               <div
-                key={item.id}
+                key={`${item.id}-${item.selectedWeight}`}
                 className="bg-white rounded-xl overflow-hidden shadow-md relative flex flex-col"
               >
                 <Link to={`/product/${item.id}`} className="flex-1">
@@ -52,18 +49,19 @@ const Cart = () => {
                 </Link>
 
                 <div
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => removeFromCart(item.id, item.selectedWeight)}
                   className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md border border-gray-300 hover:bg-[#D99A6C] hover:text-white transition-colors cursor-pointer"
                 >
-                  <TbTrashOff className="text-red-500" />
+                  <FaTrash className="text-red-500" />
                 </div>
 
-                <div className="p-3 bg-[#F5EAD8]">
+                <div className="p-3 bg-[#F3E5AB]">
                   <h3 className="font-bold text-lg">{item.title}</h3>
+
                   <p className="text-sm">
-                    ₹{item.price} x {item.quantity}{" "}
-                    <span className="text-xs">({item.selectedWeight})</span>
+                    FROM: ₹{item.price} <span className="text-xs">PER KG</span>
                   </p>
+
                   {item.category && (
                     <p className="text-xs text-gray-600 mt-1">
                       Category: {item.category.toUpperCase()}

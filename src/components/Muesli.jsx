@@ -12,7 +12,7 @@ const Muesli = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen px-4 sm:px-8 lg:px-24 py-10 bg-[#FFF8F0]">
+    <div className="mt-28 md:mt-28 lg:mt-28 min-h-screen px-4 sm:px-8 lg:px-24 py-10 bg-[#FFF8F0]">
       <h1 className="text-3xl md:text-4xl font-bold text-[#E7833C] mb-2">
         Muesli – Cherii Bakery
       </h1>

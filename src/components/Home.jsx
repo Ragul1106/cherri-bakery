@@ -7,7 +7,7 @@ import CustomerTestimonials from "../components/CustomerTestimonials";
 
 function Home() {
   return (
-    <div className="bg-[#FFF8F0] ">
+    <div className="mt-30 md:mt-30 lg:mt-30 bg-[#FFF8F0]">
       <BannerSlider />
       <WhyChooseUs />
       <div className="w-full">

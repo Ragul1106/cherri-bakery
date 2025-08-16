@@ -26,7 +26,7 @@ export default function AuthPage() {
 
 function AuthTabs({ activeTab, setActiveTab }) {
   return (
-    <div className="flex w-full">
+    <div className="mt-20 md:mt-28 lg:mt-28 flex w-full">
       <button
         onClick={() => setActiveTab("login")}
         className={`flex items-center justify-center  gap-2 w-1/2 py-4 mx-3 text-lg font-bold transition-all relative ${activeTab === "login" ? "z-20 text-white" : "z-30 text-[#E57F35]"
@@ -128,7 +128,7 @@ function LoginForm({ setActiveTab }) {
         <button
           type="button"
           onClick={() => navigate("/forget-password")}
-          className="text-lg font-bold text-[#E57F35] cursor-pointer">
+          className="text-lg font-bold text-[#E57F35] hover:underline cursor-pointer">
           Lost Your Password
         </button>
         <p className="text-lg font-bold">

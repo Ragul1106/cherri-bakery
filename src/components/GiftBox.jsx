@@ -8,7 +8,7 @@ const Giftbox = () => {
   const { wishlist, addToWishlist } = useWishlist();
 
   return (
-    <section className="bg-[#FFF8F0] py-10 min-h-screen">
+    <section className="mt-28 md:mt-28 lg:mt-28 bg-[#FFF8F0]  py-10 min-h-screen">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-center text-2xl font-bold text-[#e7833c] mb-10">
           GIFTBOX SWEETS
