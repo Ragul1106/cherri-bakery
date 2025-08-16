@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ForgetPassword = () => {
     useEffect(() => {
-        document.title = "Forget Password | EarthBubs";
+        document.title = "Forget Password | Cherii Bakery";
     }, []);
 
     const [email, setEmail] = useState("");

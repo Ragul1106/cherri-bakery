@@ -19,7 +19,7 @@ const Wishlist = () => {
                 REMOVE ALL
               </button>
               <Link
-                to="/checkout"
+                to="/our-products"
                 className="px-4 py-2 border border-[#E3C46D] rounded-full font-semibold text-black"
               >
                 NEXT

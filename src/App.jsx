@@ -34,6 +34,7 @@ import Muesli from "./components/Muesli";
 import GranolaBars from "./components/GranolaBars";
 import SuperSavers from "./components/SuperSaver";
 import SeedMixes from "./components/SeedMixes";
+import ChatItems from "./components/ChatItems";
 import { WishlistProvider } from "./context/WishlistContext";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
@@ -81,6 +82,7 @@ function App() {
                 <Route path="/granolabars" element={<GranolaBars />} />
                 <Route path="/super-savers" element={<SuperSavers />} />
                 <Route path="/seed-mixes" element={<SeedMixes />} />
+                <Route path="/chat-items" element={<ChatItems />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/wishlist" element={<Wishlist />} />
               </Routes>

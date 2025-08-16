@@ -97,9 +97,9 @@ export const Navbar = () => {
           <Link to="/wishlist" className="text-xl cursor-pointer">
             <IoMdHeartEmpty />
           </Link>
-          <Link to="/notify" className="text-xl cursor-pointer">
+          {/* <Link to="/notify" className="text-xl cursor-pointer"> */}
             <CgBell />
-          </Link>
+          {/* </Link> */}
           <Link to="/cart" className="relative text-xl cursor-pointer">
             <MdOutlineShoppingBag />
             {cartCount > 0 && (
@@ -134,7 +134,6 @@ export const Navbar = () => {
         {menuOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div className="absolute top-28 left-0 w-full bg-[#D99A6C] p-4 xl:hidden shadow-lg">
           <ul className="flex flex-col gap-3 text-black font-semibold mb-4">
@@ -168,9 +167,9 @@ export const Navbar = () => {
               <Link to="/wishlist" onClick={() => setMenuOpen(false)}>
                 <FaHeart className="text-xl cursor-pointer" />
               </Link>
-              <Link to="/notify" onClick={() => setMenuOpen(false)}>
+              {/* <Link to="/notify" onClick={() => setMenuOpen(false)}> */}
                 <FaBell className="text-xl cursor-pointer" />
-              </Link>
+              {/* </Link> */}
               <Link to="/cart" className="relative" onClick={() => setMenuOpen(false)}>
                 <FaShoppingBag className="text-xl cursor-pointer" />
                 {cartCount > 0 && (
@@ -208,6 +207,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-
-
-

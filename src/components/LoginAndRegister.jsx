@@ -132,11 +132,14 @@ function LoginForm({ setActiveTab }) {
           Lost Your Password
         </button>
         <p className="text-lg font-bold">
-          Don't Have An Account?{" "}
-          <span className="text-[#E57F35] font-bold">
-            Register
-          </span>
-        </p>
+            Don't Have An Account?{" "}
+            <span
+              onClick={() => setActiveTab("register")}
+              className="text-[#E57F35] font-bold cursor-pointer hover:underline"
+            >
+              Register
+            </span>
+          </p>
       </div>
 
       <div className="w-full md:w-1/2 flex justify-center md:justify-end">

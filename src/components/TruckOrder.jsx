@@ -24,7 +24,6 @@ const TruckOrder = ({ orderDate, deliveryDate }) => {
   const start = safeDate(orderDate);
   const end = safeDate(deliveryDate);
 
-  // Calculate time differences
   const diffMs = end.getTime() - start.getTime();
   const billingTime = new Date(start.getTime() + diffMs * 0.25);
   const loadingTime = new Date(start.getTime() + diffMs * 0.5);
@@ -54,7 +53,6 @@ const TruckOrder = ({ orderDate, deliveryDate }) => {
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-between bg-[#FEF6EC] p-6 md:p-10 gap-10 md:gap-20">
-      {/* Steps */}
       <div className="flex flex-col">
         <h2 className="font-bold text-xl mb-6">TRACK YOUR ORDER</h2>
         <div className="flex flex-col">

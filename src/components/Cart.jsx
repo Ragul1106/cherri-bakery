@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
+import { TbTrashOff } from "react-icons/tb";
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -55,7 +55,7 @@ const Cart = () => {
                   onClick={() => removeFromCart(item.id)}
                   className="absolute top-3 right-3 bg-white rounded-full p-2 shadow-md border border-gray-300 hover:bg-[#D99A6C] hover:text-white transition-colors cursor-pointer"
                 >
-                  <FaTrash className="text-red-500" />
+                  <TbTrashOff className="text-red-500" />
                 </div>
 
                 <div className="p-3 bg-[#F5EAD8]">

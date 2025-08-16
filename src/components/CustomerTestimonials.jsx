@@ -1,9 +1,12 @@
 import React from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import img1 from "../assets/images/user1.png";
 import img2 from "../assets/images/user2.png";
 
 const CustomerTestimonials = () => {
+  const navigate = useNavigate();
+
   const testimonials = [
     {
       image: img1,
@@ -29,7 +32,7 @@ const CustomerTestimonials = () => {
         {testimonials.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-5 sm:p-8 flex flex-col items-center text-center border border-gray-200 
+            className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow p-5 sm:p-8 flex flex-col items-center text-center border border-gray-200 
                        w-full max-w-[400px] mx-auto hover:scale-[1.02] transform duration-300"
           >
             <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mb-4 overflow-hidden border-2 border-[#E6772E] animate-bounce-slow">
@@ -60,15 +63,16 @@ const CustomerTestimonials = () => {
           Direct visits chat item available
         </p>
 
-        <div className="flex flex-col items-center p-4 group cursor-pointer">
+        <div
+          className="flex flex-col items-center p-4 group cursor-pointer"
+          onClick={() => navigate("/chat-items")}
+        >
           <FaLongArrowAltRight className="lg:ms-16 text-black text-xl scale-x-[8] transition-transform duration-300 group-hover:translate-x-2" />
           <span className="text-base font-medium transition-colors duration-300 group-hover:text-[#E6772E] lg:ms-10">
             see menu
           </span>
         </div>
       </div>
-
-
     </div>
   );
 };
